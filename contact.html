@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>견적문의 | 이에스테크(ESTech)</title>
+    <meta name="description" content="이에스테크 제품 견적 및 맞춤 제작 문의 페이지입니다.">
+    <!-- 통합된 style.css 사용 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 상단 헤더 -->
+    <header class="header sub-header">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" alt="ES Tech"></a>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="company.html">회사소개</a></li>
+                    <li><a href="products.html">주력제품</a></li>
+                    <li><a href="contact.html" class="active">견적문의</a></li>
+                    <li><a href="delivery.html">주요납품</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 서브페이지 상단 배너 -->
+    <section class="sub-hero">
+        <div class="container">
+            <h1>견적 및 맞춤 제작 문의</h1>
+            </div>
+    </section>
+
+    <!-- 견적문의 메인 섹션 -->
+    <section class="contact-section">
+        <div class="container contact-grid">
+            
+            <!-- 왼쪽: 고객센터 및 업체 정보 -->
+            <div class="contact-info-box">
+                <h2>빠른 전화 상담</h2>
+                <p class="contact-phone">010-5308-3738</p>
+                <p class="contact-subtext">평일 09:00 ~ 18:00 (주말 및 공휴일 휴무)</p>
+                
+                <div class="info-list">
+                    <div class="info-item">
+                        <strong>상호명</strong>
+                        <span>이에스테크(ESTech)</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>대표자</strong>
+                        <span>최남규</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>팩스번호</strong>
+                        <span>031-594-7589</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>이메일</strong>
+                        <span>estech87@naver.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 오른쪽: 온라인 견적 신청 폼 -->
+            <div class="contact-form-card">
+                <h2>온라인 견적 신청</h2>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">성함 / 업체명 <span>*</span></label>
+                        <input type="text" id="name" name="name" placeholder="예: 홍길동 (OO식당)" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">연락처 <span>*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="예: 010-1234-5678" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">이메일</label>
+                        <input type="email" id="email" name="email" placeholder="example@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product">문의 제품 선택</label>
+                        <select id="product" name="product">
+                            <option value="">제품 선택</option>
+                            <option value="밸브매립형 다열렌지">밸브매립형 다열렌지</option>
+                            <option value="일반형 다열렌지">일반형 다열렌지</option>
+                            <option value="밸브배립형 낮은렌지"> 밸브매립형 낮은렌지</option>
+                            <option value="맞춤 주방기기 제작">1:1 맞춤 주방기기 제작</option>
+                            <option value="기타 문의">기타 문의</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">문의 내용 <span>*</span></label>
+                        <textarea id="message" name="message" rows="5" placeholder="희망하시는 수량, 규격, 현장 상황 등을 상세히 적어주시면 더욱 정확한 상담이 가능합니다." required></textarea>
+                    </div>
+
+                    <div class="form-agree">
+                        <label>
+                            <input type="checkbox" required> 개인정보 수집 및 이용에 동의합니다.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-submit">견적 문의 신청하기</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="container footer-content">
+            <p>상호명: 이에스테크(ESTech) | 대표: 최남규 | 사업자등록번호: 667-26-01253 | 주소: 경기도 남양주시 화도읍 경춘로 1790, 1층 </p>
+            <p>고객센터: 010-5308-3738 | 이메일: estech87@naver.com</p>
+            <p class="copy">Copyright © 이에스테크(ESTech) All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>

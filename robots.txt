@@ -1,0 +1,15 @@
+Plaintext
+
+User-agent: Yeti
+Disallow: /admin/
+Disallow: /admin
+Disallow: /private/
+Disallow: /private
+Disallow: /login/
+Disallow: /login
+Disallow: /member/
+Disallow: /member
+
+User-agent: *
+Allow: /
+Sitemap: https://이에스테크키친.com/sitemap.xml

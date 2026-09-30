@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주요납품 실적 | 이에스테크(ESTech)</title>
+    <meta name="description" content="이에스테크의 밸브 매립형 한식가스렌지 및 업소용 주방기기 주요 납품처 및 설치 사례를 소개합니다.">
+    <!-- 통합된 style.css 사용 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+      <!-- 상단 헤더 (딥그레이 적용) -->
+    <header class="header sub-header">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" alt="ES Tech"></a>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="company.html">회사소개</a></li>
+                    <li><a href="products.html">주력제품</a></li>
+                    <li><a href="contact.html">견적문의</a></li>
+                    <li><a href="delivery.html" class="active">주요납품</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 서브페이지 상단 배너 -->
+    <section class="sub-hero">
+        <div class="container">
+            <h1>주요납품</h1>
+        </div>
+    </section>
+
+    <!-- 주요납품 본문 (시공 사진 직접 노출) -->
+    <section class="gallery-section">
+        <div class="container">          
+            <!-- 시공 사진 카드들이 자동으로 생성되어 들어갈 위치 -->
+            <div class="gallery-grid" id="galleryGridContainer"></div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="container footer-content">
+            <p>상호명: 이에스테크(ESTech) | 대표: 최남규 | 사업자등록번호: 667-26-01253 | 주소: 경기도 남양주시 화도읍 경춘로 1790, 1층 </p>
+            <p>고객센터: 010-5308-3738 | 이메일: estech87@naver.com</p>
+            <p class="copy">Copyright © 이에스테크(ESTech) All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 시공 사진 자바스크립트 -->
+    <script>
+        // 브랜드명(납품처)과 시공 사진 데이터 목록
+        const installData = [
+            {
+                title: '농심연구소',
+                imgSrc: 'images/install_nongshim_01.jpg'
+            },
+            {
+                title: '대원제약 코주부',
+                imgSrc: 'images/install_kojubu_02.jpg'
+            },
+            {
+                title: '원스타 올드패션드 햄버거',
+                imgSrc: 'images/install_onestar_03.jpg'
+            },
+            {
+                title: '떡산',
+                imgSrc: 'images/install_tuksan_04.jpg'
+            },
+            {
+                title: '밀본',
+                imgSrc: 'images/install_milbon_05.jpg'
+            },
+            {
+                title: '봉피양',
+                imgSrc: 'images/install_bong_06.jpg'
+            },
+            {
+                title: '상춘재',
+                imgSrc: 'images/install_sangchun_07.jpg'
+            },
+            {
+                title: '스타필드 푸드코트',
+                imgSrc: 'images/install_star_08.jpg'
+            },
+            {
+                title: '싱가포르 수출',
+                imgSrc: 'images/install_singapore_09.jpg'
+         
+            },
+            {
+                title: '코코이찌방야 반포고속버스터미널점 외',
+                imgSrc: 'images/install_koko_10.jpg'
+            }
+
+
+
+
+
+        ];
+
+        const container = document.getElementById('galleryGridContainer');
+
+        // 화면에 사진과 브랜드명 카드 생성
+        installData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'gallery-card';
+
+            card.innerHTML = `
+                <div class="card-img-box">
+                    <img src="${item.imgSrc}" alt="${item.title}" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300?text=이미지+준비중';">
+                </div>
+                <div class="card-info">
+                    <h3>${item.title}</h3>
+                </div>
+            `;
+
+            container.appendChild(card);
+        });
+    </script>
+</body>

@@ -209,6 +209,7 @@ footer .copy {
     color: #fff;
     text-align: center;
     padding: 140px 20px;
+    margin-bottom: 100px; /* 메인 이미지 아래쪽에 100px 공간을 확보합니다 */
 }
 
 /* 타이틀 및 텍스트 크기 확장 */

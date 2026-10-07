@@ -505,6 +505,7 @@ footer .copy {
     }
 
     .nav-container {
+        text-align: center;
         flex-direction: column;
         gap: 12px;
     }

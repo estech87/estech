@@ -507,7 +507,7 @@ footer .copy { 
     }
 
     .nav-container {
-        fflex-direction: column;
+        flex-direction: column;
         align-items: center;            /* 중앙 정렬 */
         gap: 12px;
         width: 100%;

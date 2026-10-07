@@ -495,13 +495,18 @@ footer .copy {
    8. 모바일 반응형 설정 (768px 이하)
    ========================================== */
 @media (max-width: 768px) {
-    .header {
-        padding: 15px 20px !important;
-    }
+  .header-container {
+  display: flex;
+  justify-content: space-between; /* 로고는 왼쪽, 메뉴는 오른쪽 */
+  align-items: center;            /* 세로 중앙 정렬 */
+  width: 100%;
+  padding: 0 16px;                /* 좌우 여백 */
+  box-sizing: border-box;
+}
 
     .nav-container {
         flex-direction: column;
-        gap: 5px;
+        gap: 12px;
     }
 
     .logo img {

@@ -501,6 +501,7 @@ footer .copy {
         margin: 0 auto;
     }
     .header {
+        display: flex; justify-content: center
         padding: 15px 20px !important;
     }
 

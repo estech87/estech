@@ -501,7 +501,7 @@ footer .copy {
 
     .nav-container {
         flex-direction: column;
-        gap: 12px;
+        gap: 5px;
     }
 
     .logo img {

@@ -495,18 +495,11 @@ footer .copy {
    8. 모바일 반응형 설정 (768px 이하)
    ========================================== */
 @media (max-width: 768px) {
-    .site-title, .logo-container {
-        text-align: center;
-        display: block;
-        margin: 0 auto;
-    }
     .header {
-        display: flex; justify-content: center
         padding: 15px 20px !important;
     }
 
     .nav-container {
-        text-align: center;
         flex-direction: column;
         gap: 12px;
     }

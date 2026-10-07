@@ -507,14 +507,17 @@ footer .copy {
     }
 
     .nav-container {
-        flex-direction: column;
+        fflex-direction: column;
+        align-items: center;            /* 중앙 정렬 */
         gap: 12px;
+        width: 100%;
     }
 
     .logo {
         margin: 0 auto 10px auto;       /* 로고 중앙 배치 및 아래 여백 */
         text-align: center;
     }
+
     .logo img {
        height: 38px;
         display: block;
@@ -522,13 +525,18 @@ footer .copy {
     }
 
     .nav-menu ul {
+        display: flex;
         gap: 15px;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: center;        /* 메뉴 항목들 가운데 정렬 */
+        padding: 0;
+        margin: 0;
+        list-style: none;
     }
 
     .nav-menu a {
         font-size: 15px;
+        display: inline-block;
     }
 
     .hero {
@@ -536,16 +544,18 @@ footer .copy {
     }
 
     .sub-hero h1, .hero h1, .hero-content h1 {
-        font-size: 2rem !important;
+       font-size: 2rem !important;
+        text-align: center;             /* 히어로 타이틀도 가운데 정렬 */
     }
 
     .sub-hero p, .hero p, .hero-content p {
         font-size: 1.2rem !important;
+        text-align: center;             /* 히어로 본문도 가운데 정렬 */
     }
 
     .grid-2, .about-grid, .contact-grid {
-        flex-direction: column !important;
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        grid-template-columns: 1fr !important;
     }
 
     .about-text h2, .about-text-box h2 {
@@ -559,6 +569,7 @@ footer .copy {
     .company-table th, .company-table td {
         display: block;
         width: 100%;
+        box-sizing: border-box;
     }
 
     .company-table th {

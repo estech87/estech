@@ -495,52 +495,51 @@ footer .copy {
    8. 모바일 반응형 설정 (768px 이하)
    ========================================== */
 @media (max-width: 768px) {
-  .header-container {
-  display: flex;
-        flex-direction: column;         /* 세로 배치로 변경 */
-        justify-content: center;        /* 주축 중앙 정렬 */
-        align-items: center;            /* 교차축 중앙 정렬 */
-        width: 100%;
-        padding: 10px 16px;             /* 모바일 상하좌우 여백 */
-        box-sizing: border-box;
-        text-align: center;             /* 텍스트 중앙 정렬 */
+  .header {
+        padding: 15px 16px !important;
     }
-
-    .nav-container {
-        fflex-direction: column;
-        align-items: center;            /* 중앙 정렬 */
+      .nav-container {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
         gap: 12px;
-        width: 100%;
     }
 
     .logo {
-        margin: 0 auto 10px auto;       /* 로고 중앙 배치 및 아래 여백 */
-        text-align: center;
+        margin: 0 auto !important;
+        text-align: center !important;
     }
 
     .logo img {
-       height: 38px;
-        display: block;
-        margin: 0 auto;                 /* 이미지 자체 중앙 정렬 */
+       height: 38px !important;
+        display: block !important;
+        margin: 0 auto !important;
     }
 
+    .nav-menu {
+        width: 100% !important;
+        text-align: center !important;
+    }
     .nav-menu ul {
-        display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;        /* 메뉴 항목들 가운데 정렬 */
-        padding: 0;
-        margin: 0;
-        list-style: none;
+        display: flex !important;
+        gap: 15px !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
     }
 
     .nav-menu a {
-        font-size: 15px;
-        display: inline-block;
+        font-size: 15px !important;
+        display: inline-block !important;
     }
 
     .hero {
-        padding: 170px 20px 60px;
+        padding: 170px 20px 60px !important;
+        text-align: center !important;
     }
 
     .sub-hero h1, .hero h1, .hero-content h1 {

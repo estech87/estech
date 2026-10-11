@@ -712,8 +712,8 @@ footer .copy {
 
     .nav-menu ul {
         display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
+        gap: 8px;
+        flex-wrap: nowrap;
         justify-content: center;
         padding: 0;
         margin: 0;
@@ -721,7 +721,7 @@ footer .copy {
     }
 
     .nav-menu a {
-        font-size: 15px;
+        font-size: 13.5px;
         display: inline-block;
     }
 

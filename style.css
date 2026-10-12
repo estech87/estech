@@ -768,9 +768,25 @@ footer .copy {
         margin-bottom: 10px;
     }
 
+    .contact-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
     .contact-info-box, .contact-form-card {
         width: 100% !important;
+        box-sizing: border-box !important;
         padding: 25px !important;
+    }
+
+    .contact-form-card input,
+    .contact-form-card select,
+    .contact-form-card textarea {
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     .contact-phone {

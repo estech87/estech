@@ -32,7 +32,7 @@
     <section class="sub-hero">
         <div class="container">
             <h1>견적 및 맞춤 제작 문의</h1>
-            </div>
+        </div>
     </section>
 
     <!-- 견적문의 메인 섹션 -->
@@ -68,7 +68,7 @@
             <!-- 오른쪽: 온라인 견적 신청 폼 -->
             <div class="contact-form-card">
                 <h2>온라인 견적 신청</h2>
-                <form action="#" method="post">
+                <form id="contactForm">
                     <div class="form-group">
                         <label for="name">성함 / 업체명 <span>*</span></label>
                         <input type="text" id="name" name="name" placeholder="예: 홍길동 (OO식당)" required>
@@ -90,7 +90,7 @@
                             <option value="">제품 선택</option>
                             <option value="밸브매립형 다열렌지">밸브매립형 다열렌지</option>
                             <option value="일반형 다열렌지">일반형 다열렌지</option>
-                            <option value="밸브배립형 낮은렌지"> 밸브매립형 낮은렌지</option>
+                            <option value="밸브매립형 낮은렌지">밸브매립형 낮은렌지</option>
                             <option value="맞춤 주방기기 제작">1:1 맞춤 주방기기 제작</option>
                             <option value="기타 문의">기타 문의</option>
                         </select>
@@ -115,12 +115,42 @@
     </section>
 
     <!-- 푸터 -->
-    <footer>
+   <footer>
         <div class="container footer-content">
             <p>상호명: 이에스테크(ESTech) | 대표: 최남규 | 사업자등록번호: 667-26-01253 | 주소: 경기도 남양주시 화도읍 경춘로 1790, 1층 </p>
             <p>고객센터: 031-594-7587 | 이메일: estech87@naver.com</p>
-            <p class="copy">Copyright © 이에스테크(ESTech) All Rights Reserved.</p>
+            <p class="copy">
+                Copyright © 이에스테크(ESTech) All Rights Reserved. 
+                <a href="admin.html" style="color: #aaa; text-decoration: none; margin-left: 8px; font-size: 11px;">[관리자]</a>
+            </p>
         </div>
     </footer>
 
+    <!-- 입력한 데이터를 저장하고 confirm.html로 이동시키는 스크립트 -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const newEstimate = {
+                id: Date.now(),
+                date: new Date().toLocaleDateString('ko-KR') + ' ' + new Date().toLocaleTimeString('ko-KR', {hour: '2-digit', minute:'2-digit'}),
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value || '미입력',
+                product: document.getElementById('product').value || '미선택',
+                message: document.getElementById('message').value,
+                status: '접수완료'
+            };
+
+            let list = JSON.parse(localStorage.getItem('estimateList')) || [];
+            list.unshift(newEstimate);
+
+            localStorage.setItem('estimateList', JSON.stringify(list));
+            localStorage.setItem('estimateData', JSON.stringify(newEstimate));
+
+            window.location.href = 'confirm.html';
+        });
+    </script>
+
 </body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>견적문의 완료 | 이에스테크(ESTech)</title>
+    <meta name="description" content="이에스테크 견적 및 맞춤 제작 문의 접수 완료 페이지입니다.">
+    <!-- 통합된 style.css 사용 -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .confirm-card {
+            max-width: 650px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .confirm-card h2 {
+            font-size: 24px;
+            color: #222;
+            margin-bottom: 10px;
+        }
+        .confirm-card .sub-desc {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+        .summary-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 20px 25px;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        .summary-item {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        .summary-label {
+            width: 130px;
+            font-weight: bold;
+            color: #444;
+            flex-shrink: 0;
+        }
+        .summary-value {
+            color: #333;
+            word-break: break-all;
+            white-space: pre-line;
+        }
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        .btn-home {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #0056b3;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .btn-home:hover {
+            background-color: #003d80;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 상단 헤더 -->
+    <header class="header sub-header">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" alt="ES Tech"></a>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="company.html">회사소개</a></li>
+                    <li><a href="products.html">주력제품</a></li>
+                    <li><a href="contact.html" class="active">견적문의</a></li>
+                    <li><a href="layout.html">주방도면</a></li>
+                    <li><a href="delivery.html">주요납품</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 서브페이지 상단 배너 -->
+    <section class="sub-hero">
+        <div class="container">
+            <h1>견적 및 맞춤 제작 문의</h1>
+        </div>
+    </section>
+
+    <!-- 견적문의 완료 섹션 -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="confirm-card">
+                <h2>견적 문의가 정상적으로 접수되었습니다.</h2>
+                <p class="sub-desc">보내주신 내용을 확인 후, 담당자가 빠른 시일 내에 연락드리겠습니다.</p>
+
+                <!-- 접수 내역 확인 영역 -->
+                <div class="summary-box">
+                    <div class="summary-item">
+                        <span class="summary-label">성함 / 업체명</span>
+                        <span class="summary-value" id="display-name">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">연락처</span>
+                        <span class="summary-value" id="display-phone">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">이메일</span>
+                        <span class="summary-value" id="display-email">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">문의 제품</span>
+                        <span class="summary-value" id="display-product">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">문의 내용</span>
+                        <span class="summary-value" id="display-message">-</span>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <a href="index.html" class="btn-home">메인페이지로 이동</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="container footer-content">
+            <p>상호명: 이에스테크(ESTech) | 대표: 최남규 | 사업자등록번호: 667-26-01253 | 주소: 경기도 남양주시 화도읍 경춘로 1790, 1층 </p>
+            <p>고객센터: 031-594-7587 | 이메일: estech87@naver.com</p>
+            <p class="copy">Copyright © 이에스테크(ESTech) All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 저장된 데이터를 불러와서 화면에 채워주는 스크립트 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedData = localStorage.getItem('estimateData');
+
+            if (savedData) {
+                const data = JSON.parse(savedData);
+
+                document.getElementById('display-name').textContent = data.name || '미입력';
+                document.getElementById('display-phone').textContent = data.phone || '미입력';
+                document.getElementById('display-email').textContent = data.email || '미입력';
+                document.getElementById('display-product').textContent = data.product || '미선택';
+                document.getElementById('display-message').textContent = data.message || '내용 없음';
+            } else {
+                alert('잘못된 접근입니다. 견적문의 페이지를 이용해주세요.');
+                window.location.href = 'contact.html';
+            }
+        });
+    </script>
+
+</body>
+</html>

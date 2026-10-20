@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>견적문의 관리자 페이지 | 이에스테크(ESTech)</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+
+        /* 로그인 박스 스타일 */
+        .login-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+        .login-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+        }
+        .login-card h2 {
+            margin-bottom: 8px;
+            font-size: 20px;
+            color: #222;
+        }
+        .login-card p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 24px;
+        }
+        .login-card input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 15px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            outline: none;
+        }
+        .login-card input[type="password"]:focus {
+            border-color: #0056b3;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #0056b3;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .login-btn:hover {
+            background-color: #003d80;
+        }
+        .error-msg {
+            color: #dc3545;
+            font-size: 13px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* 관리자 메인 영역 (기본 숨김) */
+        .admin-container {
+            display: none;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 25px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .admin-header h1 {
+            font-size: 22px;
+            color: #222;
+        }
+        .header-btns {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-action {
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .btn-action.btn-danger {
+            background-color: #dc3545;
+        }
+        .btn-action.btn-logout {
+            background-color: #6c757d;
+        }
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+        }
+        .admin-table th, .admin-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .admin-table th {
+            background-color: #f8f9fa;
+            color: #333;
+            font-weight: bold;
+        }
+        .admin-table tr:hover {
+            background-color: #f1f3f5;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* 모달 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            width: 500px;
+            padding: 25px;
+            border-radius: 8px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .close-btn {
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        .modal-body p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. 비밀번호 입력 화면 -->
+    <div id="loginSection" class="login-wrapper">
+        <div class="login-card">
+            <h2>관리자 인증</h2>
+            <p>견적문의 관리를 위해 비밀번호를 입력해주세요.</p>
+            <form id="loginForm">
+                <input type="password" id="adminPassword" placeholder="비밀번호 입력" required autofocus>
+                <button type="submit" class="login-btn">로그인</button>
+            </form>
+            <div id="errorMsg" class="error-msg">비밀번호가 올바르지 않습니다.</div>
+        </div>
+    </div>
+
+    <!-- 2. 관리자 메인 목록 화면 (로그인 성공 시 표시) -->
+    <div id="adminSection" class="admin-container">
+        <div class="admin-header">
+            <h1>견적문의 접수 목록 (관리자용)</h1>
+            <div class="header-btns">
+                <button class="btn-action" onclick="downloadCSV()">엑셀(CSV) 다운로드</button>
+                <button class="btn-action btn-danger" onclick="clearAllData()">전체 삭제</button>
+                <button class="btn-action btn-logout" onclick="logout()">로그아웃</button>
+            </div>
+        </div>
+
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>접수일시</th>
+                    <th>성함 / 업체명</th>
+                    <th>연락처</th>
+                    <th>문의 제품</th>
+                    <th>상태</th>
+                    <th>상세보기</th>
+                </tr>
+            </thead>
+            <tbody id="list-body">
+                <!-- 자바스크립트로 데이터 출력 -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 상세보기 모달 창 -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>견적문의 상세내용</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        // ★ 관리자 비밀번호 설정 (원하시는 비밀번호로 변경하세요) ★
+        const ADMIN_PASSWORD = "dldptmxpzm87"
+
+        // 페이지 로드 시 로그인 상태 확인
+        document.addEventListener('DOMContentLoaded', function() {
+            if (sessionStorage.getItem('isAdminLoggedIn') === 'true') {
+                showAdminSection();
+            }
+        });
+
+        // 로그인 폼 제출 처리
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const inputPw = document.getElementById('adminPassword').value;
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (inputPw === ADMIN_PASSWORD) {
+                sessionStorage.setItem('isAdminLoggedIn', 'true');
+                errorMsg.style.display = 'none';
+                showAdminSection();
+            } else {
+                errorMsg.style.display = 'block';
+                document.getElementById('adminPassword').value = '';
+                document.getElementById('adminPassword').focus();
+            }
+        });
+
+        // 관리자 화면 표시
+        function showAdminSection() {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('adminSection').style.display = 'block';
+            renderList();
+        }
+
+        // 로그아웃
+        function logout() {
+            sessionStorage.removeItem('isAdminLoggedIn');
+            location.reload();
+        }
+
+        // 접수 목록 출력
+        function renderList() {
+            const list = JSON.parse(localStorage.getItem('estimateList')) || [];
+            const body = document.getElementById('list-body');
+            body.innerHTML = '';
+
+            if (list.length === 0) {
+                body.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:30px; color:#888;">접수된 견적문의가 없습니다.</td></tr>';
+                return;
+            }
+
+            list.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.date}</td>
+                    <td><strong>${item.name}</strong></td>
+                    <td>${item.phone}</td>
+                    <td>${item.product}</td>
+                    <td><span class="badge">${item.status}</span></td>
+                    <td>
+                        <button onclick="viewDetail(${item.id})" style="padding:4px 8px; cursor:pointer;">보기</button>
+                        <button onclick="deleteItem(${item.id})" style="padding:4px 8px; cursor:pointer; color:red;">삭제</button>
+                    </td>
+                `;
+                body.appendChild(tr);
+            });
+        }
+
+        // 상세보기
+        function viewDetail(id) {
+            const list = JSON.parse(localStorage.getItem('estimateList')) || [];
+            const item = list.find(e => e.id === id);
+
+            if (item) {
+                document.getElementById('modal-body').innerHTML = `
+                    <p><strong>접수일시:</strong> ${item.date}</p>
+                    <p><strong>성함/업체명:</strong> ${item.name}</p>
+                    <p><strong>연락처:</strong> ${item.phone}</p>
+                    <p><strong>이메일:</strong> ${item.email}</p>
+                    <p><strong>문의제품:</strong> ${item.product}</p>
+                    <hr style="margin: 10px 0; border:0; border-top:1px solid #eee;">
+                    <p><strong>문의내용:</strong></p>
+                    <div style="background:#f9f9f9; padding:10px; border-radius:4px; white-space:pre-line;">${item.message}</div>
+                `;
+                document.getElementById('detailModal').style.display = 'flex';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').style.display = 'none';
+        }
+
+        function deleteItem(id) {
+            if (confirm('해당 문의 내역을 삭제하시겠습니까?')) {
+                let list = JSON.parse(localStorage.getItem('estimateList')) || [];
+                list = list.filter(item => item.id !== id);
+                localStorage.setItem('estimateList', JSON.stringify(list));
+                renderList();
+            }
+        }
+
+        function clearAllData() {
+            if (confirm('전체 견적문의 내역을 삭제하시겠습니까?')) {
+                localStorage.removeItem('estimateList');
+                renderList();
+            }
+        }
+
+        function downloadCSV() {
+            const list = JSON.parse(localStorage.getItem('estimateList')) || [];
+            if (list.length === 0) {
+                alert('다운로드할 데이터가 없습니다.');
+                return;
+            }
+
+            let csvContent = "\uFEFF접수일시,성함/업체명,연락처,이메일,문의제품,문의내용\n";
+            list.forEach(item => {
+                const msg = `"${item.message.replace(/"/g, '""')}"`;
+                csvContent += `"${item.date}","${item.name}","${item.phone}","${item.email}","${item.product}",${msg}\n`;
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = `견적문의_접수목록_${new Date().toISOString().slice(0,10)}.csv`;
+            link.click();
+        }
+    </script>
+</body>
+</html>
